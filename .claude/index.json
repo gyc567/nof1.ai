@@ -1,0 +1,250 @@
+{
+  "timestamp": "2025-10-30T11:29:10.000Z",
+  "project": "open-nof1.ai",
+  "version": "1.0.0",
+  "scan_summary": {
+    "total_files": 68,
+    "scanned_files": 15,
+    "coverage_percentage": 22.1,
+    "modules_identified": 9,
+    "documentation_files_created": 4,
+    "truncated": false,
+    "scan_reason": "initial_project_setup"
+  },
+  "modules": [
+    {
+      "path": "src/agents",
+      "language": "typescript",
+      "type": "core_module",
+      "entry_file": "tradingAgent.ts",
+      "status": "active",
+      "documentation": "created",
+      "test_files": 0,
+      "key_interfaces": ["createTradingAgent", "generateTradingPrompt", "getAccountRiskConfig"],
+      "dependencies": ["@voltagent/core", "@voltagent/libsql", "@openrouter/ai-sdk-provider"],
+      "coverage_score": 85
+    },
+    {
+      "path": "src/api",
+      "language": "typescript", 
+      "type": "interface_module",
+      "entry_file": "routes.ts",
+      "status": "active",
+      "documentation": "created",
+      "test_files": 0,
+      "key_interfaces": ["createApiRoutes", "AccountOverview", "Position"],
+      "dependencies": ["hono", "@hono/node-server", "@libsql/client"],
+      "coverage_score": 80
+    },
+    {
+      "path": "src/config",
+      "language": "typescript",
+      "type": "config_module", 
+      "entry_file": "riskParams.ts",
+      "status": "active",
+      "documentation": "pending",
+      "test_files": 0,
+      "key_interfaces": ["RISK_PARAMS"],
+      "dependencies": [],
+      "coverage_score": 60
+    },
+    {
+      "path": "src/database",
+      "language": "typescript",
+      "type": "data_module",
+      "entry_file": "init.ts",
+      "status": "active", 
+      "documentation": "created",
+      "test_files": 0,
+      "key_interfaces": ["initDatabase", "syncPositionsFromGate", "Trade", "Position"],
+      "dependencies": ["@libsql/client", "gate-api"],
+      "coverage_score": 90
+    },
+    {
+      "path": "src/scheduler",
+      "language": "typescript",
+      "type": "core_module",
+      "entry_file": "tradingLoop.ts",
+      "status": "active",
+      "documentation": "pending", 
+      "test_files": 0,
+      "key_interfaces": ["startTradingLoop", "startAccountRecorder"],
+      "dependencies": ["node-cron", "@libsql/client"],
+      "coverage_score": 70
+    },
+    {
+      "path": "src/services",
+      "language": "typescript",
+      "type": "service_module",
+      "entry_file": "gateClient.ts",
+      "status": "active",
+      "documentation": "pending",
+      "test_files": 0,
+      "key_interfaces": ["GateClient", "createGateClient"],
+      "dependencies": ["gate-api"],
+      "coverage_score": 75
+    },
+    {
+      "path": "src/tools/trading",
+      "language": "typescript",
+      "type": "tool_module",
+      "entry_file": "index.ts",
+      "status": "active",
+      "documentation": "pending",
+      "test_files": 0,
+      "key_interfaces": ["getMarketPriceTool", "openPositionTool", "getAccountBalanceTool"],
+      "dependencies": ["@voltagent/core"],
+      "coverage_score": 65
+    },
+    {
+      "path": "strategies",
+      "language": "markdown",
+      "type": "documentation_module",
+      "entry_file": "README.md",
+      "status": "active",
+      "documentation": "pending",
+      "test_files": 0,
+      "key_interfaces": ["conservative-strategy-v1", "balanced-strategy-v2"],
+      "dependencies": [],
+      "coverage_score": 50
+    },
+    {
+      "path": "src/types",
+      "language": "typescript",
+      "type": "type_module",
+      "entry_file": "gate.d.ts",
+      "status": "supporting",
+      "documentation": "pending",
+      "test_files": 0,
+      "key_interfaces": ["GateAPI类型定义"],
+      "dependencies": [],
+      "coverage_score": 40
+    }
+  ],
+  "coverage_gaps": [
+    {
+      "type": "missing_documentation",
+      "modules": ["src/config", "src/scheduler", "src/services", "src/tools/trading", "strategies", "src/types", "src/utils"],
+      "priority": "high"
+    },
+    {
+      "type": "missing_tests",
+      "modules": ["all_modules"],
+      "priority": "medium"
+    },
+    {
+      "type": "incomplete_interface_analysis",
+      "modules": ["src/tools/trading", "src/services", "src/scheduler"],
+      "priority": "high"
+    },
+    {
+      "type": "missing_dependency_analysis",
+      "modules": ["src/config", "src/utils", "src/types"],
+      "priority": "low"
+    }
+  ],
+  "ignored_files": [
+    {
+      "pattern": "node_modules/**",
+      "count": 0,
+      "reason": "dependency_directory"
+    },
+    {
+      "pattern": "*.lock",
+      "count": 1,
+      "reason": "lock_file"
+    },
+    {
+      "pattern": "*.log",
+      "count": 0,
+      "reason": "log_file"
+    },
+    {
+      "pattern": "*.png",
+      "count": 1,
+      "reason": "binary_image"
+    },
+    {
+      "pattern": "public/**",
+      "count": 6,
+      "reason": "static_assets"
+    },
+    {
+      "pattern": "scripts/**",
+      "count": 15,
+      "reason": "utility_scripts"
+    }
+  ],
+  "recommendations": {
+    "next_scan_priority": [
+      "src/scheduler/tradingLoop.ts",
+      "src/services/gateClient.ts", 
+      "src/tools/trading/index.ts",
+      "src/config/riskParams.ts",
+      "strategies/balanced-strategy-v2.md"
+    ],
+    "documentation_priority": [
+      "src/scheduler/CLAUDE.md",
+      "src/services/CLAUDE.md",
+      "src/tools/trading/CLAUDE.md",
+      "src/config/CLAUDE.md",
+      "strategies/CLAUDE.md"
+    ],
+    "testing_priority": [
+      "src/agents/tradingAgent.ts",
+      "src/database/sync-from-gate.ts",
+      "src/scheduler/tradingLoop.ts",
+      "src/api/routes.ts"
+    ],
+    "architecture_improvements": [
+      "add_integration_tests",
+      "implement_error_boundary_handling",
+      "add_performance_monitoring",
+      "implement_circuit_breaker_pattern",
+      "add_comprehensive_logging"
+    ]
+  },
+  "technical_debt": [
+    {
+      "issue": "missing_typescript_strict_mode",
+      "severity": "medium",
+      "location": "global",
+      "description": "项目未启用TypeScript严格模式"
+    },
+    {
+      "issue": "incomplete_error_handling",
+      "severity": "high", 
+      "location": "src/api/routes.ts",
+      "description": "API路由缺少完整的错误边界处理"
+    },
+    {
+      "issue": "no_circuit_breaker",
+      "severity": "medium",
+      "location": "src/services/gateClient.ts",
+      "description": "Gate.io客户端缺少熔断机制"
+    },
+    {
+      "issue": "missing_rate_limiting",
+      "severity": "medium",
+      "location": "src/api/routes.ts",
+      "description": "API接口缺少请求限流保护"
+    }
+  ],
+  "code_quality_metrics": {
+    "typescript_coverage": 22.1,
+    "documentation_coverage": 44.4,
+    "test_coverage": 0,
+    "error_handling_score": 65,
+    "security_score": 70,
+    "performance_score": 75,
+    "maintainability_score": 68
+  },
+  "architecture_assessment": {
+    "modularity_score": 85,
+    "separation_of_concerns": 80,
+    "dependency_management": 75,
+    "scalability_potential": 70,
+    "testing_readiness": 60,
+    "overall_design_quality": 78
+  }
+}
