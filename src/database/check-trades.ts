@@ -28,7 +28,10 @@ const logger = createPinoLogger({
 async function checkTrades() {
   try {
     const dbUrl = process.env.DATABASE_URL || "file:./.voltagent/trading.db";
-    const client = createClient({ url: dbUrl });
+    const client = createClient({ 
+      url: dbUrl,
+      authToken: process.env.DATABASE_AUTH_TOKEN,
+    });
     
     logger.info("📊 查询最近5条交易记录...\n");
     

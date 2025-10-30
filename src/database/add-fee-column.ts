@@ -35,6 +35,7 @@ async function addFeeColumn() {
     
     const client = createClient({
       url: dbUrl,
+      authToken: process.env.DATABASE_AUTH_TOKEN,
     });
     
     logger.info("🔧 检查trades表结构...");

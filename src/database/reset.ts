@@ -107,6 +107,7 @@ async function resetDatabase() {
 
     const client = createClient({
       url: dbUrl,
+      authToken: process.env.DATABASE_AUTH_TOKEN,
     });
 
     // 删除所有表

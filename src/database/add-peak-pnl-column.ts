@@ -23,6 +23,7 @@ import { createClient } from "@libsql/client";
 
 const dbClient = createClient({
   url: process.env.DATABASE_URL || "file:./.voltagent/trading.db",
+  authToken: process.env.DATABASE_AUTH_TOKEN,
 });
 
 async function addPeakPnlColumn() {

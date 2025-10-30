@@ -159,6 +159,7 @@ async function resetDatabase(): Promise<void> {
 
     const client = createClient({
       url: dbUrl,
+      authToken: process.env.DATABASE_AUTH_TOKEN,
     });
 
     // 删除所有表
@@ -231,6 +232,7 @@ async function syncPositions(): Promise<void> {
     
     const client = createClient({
       url: dbUrl,
+      authToken: process.env.DATABASE_AUTH_TOKEN,
     });
     
     // 从 Gate.io 获取持仓

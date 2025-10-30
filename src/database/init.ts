@@ -32,12 +32,14 @@ const logger = createPinoLogger({
 async function initDatabase() {
   try {
     const dbUrl = process.env.DATABASE_URL || "file:./.voltagent/trading.db";
+    const authToken = process.env.DATABASE_AUTH_TOKEN;
     const initialBalance = Number.parseFloat(process.env.INITIAL_BALANCE || "1000");
 
     logger.info(`初始化数据库: ${dbUrl}`);
 
     const client = createClient({
       url: dbUrl,
+      authToken: authToken,
     });
 
     // 执行建表语句

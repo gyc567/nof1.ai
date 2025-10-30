@@ -38,6 +38,7 @@ async function syncPositionsOnly() {
     const dbUrl = process.env.DATABASE_URL || "file:./.voltagent/trading.db";
     const client = createClient({
       url: dbUrl,
+      authToken: process.env.DATABASE_AUTH_TOKEN,
     });
     
     // 2. 检查表是否存在，不存在则创建

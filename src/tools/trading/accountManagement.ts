@@ -27,6 +27,7 @@ import { RISK_PARAMS } from "../../config/riskParams";
 
 const dbClient = createClient({
   url: process.env.DATABASE_URL || "file:./.voltagent/trading.db",
+  authToken: process.env.DATABASE_AUTH_TOKEN,
 });
 
 /**

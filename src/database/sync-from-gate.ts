@@ -80,6 +80,7 @@ async function syncFromGate() {
     
     const client = createClient({
       url: dbUrl,
+      authToken: process.env.DATABASE_AUTH_TOKEN,
     });
     
     // 5. 删除现有表
